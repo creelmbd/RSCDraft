@@ -7,110 +7,108 @@
     <link rel="stylesheet" href="draft-styles.css">
 </head>
 <body>
-    <!-- Header -->
-    <header>
-        <div class="container">
-            <nav class="navbar">
-                <div class="logo">
-                    <img src="logo-placeholder.png" alt="Rising Star Classic Logo">
-                    <span class="logo-text">Rising Star Classic Draft</span>
-                </div>
-            </nav>
-        </div>
-    </header>
+  <!-- Header -->
+  <header>
+      <div class="container">
+          <nav class="navbar">
+              <div class="logo">
+                  <img src="/api/placeholder/60/60" alt="Rising Star Classic Logo">
+                  <span class="logo-text">Rising Star Classic Draft</span>
+              </div>
+          </nav>
+      </div>
+  </header>
 
-    <!-- Main Content -->
-    <main class="main">
-        <div class="container">
-            <!-- Draft Start Overlay -->
-            <div class="draft-start-overlay" id="draft-start-overlay">
-                <div class="draft-start-content">
-                    <img src="logo-placeholder.png" alt="Rising Star Classic Logo" class="draft-start-logo">
-                    <h1 class="draft-start-title">2025 Rising Star Classic</h1>
-                    <p class="draft-start-description">
-                        Welcome to the 2025 Rising Star Classic Draft! Each player will have 5 minutes to make their pick.
-                        The draft will proceed in the order shown on the screen.
-                    </p>
-                    <button class="btn btn-large btn-start" id="start-draft-btn">START DRAFT</button>
-                </div>
-            </div>
+  <!-- Main Content -->
+  <main class="main">
+      <div class="container">
+          <!-- Draft Start Overlay -->
+          <div class="draft-start-overlay" id="draft-start-overlay">
+              <div class="draft-start-content">
+                  <img src="/api/placeholder/150/150" alt="Rising Star Classic Logo" class="draft-start-logo">
+                  <h1 class="draft-start-title">2025 Rising Star Classic</h1>
+                  <p class="draft-start-description">
+                      Welcome to the 2025 Rising Star Classic Draft! Each player will have 5 minutes to make their pick.
+                      The draft will proceed in the order shown on the screen.
+                  </p>
+                  <button class="btn btn-large btn-start" id="start-draft-btn">START DRAFT</button>
+              </div>
+          </div>
 
-            <div class="section-title">
-                <h2>Partner Selection Draft</h2>
-            </div>
+          <div class="section-title">
+              <h2>Partner Selection Draft</h2>
+          </div>
 
-            <!-- Draft Process -->
-            <div class="draft-container">
-                <!-- Current Pick Section -->
-                <div class="current-pick-section">
-                    <div class="current-pick-header">
-                        <div class="round-indicator">Round: <span id="current-round">1</span> of 18</div>
-                        <div class="pick-number">Pick #<span id="pick-number">1</span></div>
-                    </div>
+          <!-- Draft Process -->
+          <div class="draft-container">
+              <!-- Current Pick Section -->
+              <div class="current-pick-section">
+                  <div class="current-pick-header">
+                      <div class="round-indicator">Round: <span id="current-round">1</span> of 18</div>
+                      <div class="pick-number">Pick #<span id="pick-number">1</span></div>
+                  </div>
 
-                    <div id="current-picker" class="current-drafter">Minges</div>
+                  <div id="current-picker" class="current-drafter">Minges</div>
 
-                    <div class="timer-container">
-                        <div id="timer" class="timer">5:00</div>
-                    </div>
+                  <div class="timer-container">
+                      <div id="timer" class="timer">5:00</div>
+                  </div>
 
-                    <div class="draft-progress">
-                        <div class="progress-bar" id="progress-bar"></div>
-                    </div>
-                </div>
+                  <div class="draft-progress">
+                      <div class="progress-bar" id="progress-bar"></div>
+                  </div>
+              </div>
 
-                <div class="draft-sections">
-                    <!-- Left Side: Drafters -->
-                    <div class="players-section">
-                        <div class="section-header">
-                            <h3>Players Making Picks</h3>
-                            <div>18 Players</div>
-                        </div>
-                        <div class="players-list" id="players-list">
-                            <!-- Players will be added here by JavaScript -->
-                        </div>
-                    </div>
+              <div class="draft-sections">
+                  <!-- Left Side: Drafters -->
+                  <div class="players-section">
+                      <div class="section-header">
+                          <h3>Players Making Picks</h3>
+                          <div>18 Players</div>
+                      </div>
+                      <div class="players-list" id="players-list">
+                          <!-- Players will be added here by JavaScript -->
+                      </div>
+                  </div>
 
-                    <!-- Right Side: Pool -->
-                    <div class="pool-section">
-                        <div class="section-header">
-                            <h3>Available Partners (Pool)</h3>
-                            <div>Make selection below</div>
-                        </div>
-                        <div class="pool-list" id="pool-list">
-                            <!-- Pool players will be added here by JavaScript -->
-                        </div>
-                    </div>
-                </div>
+                  <!-- Right Side: Pool -->
+                  <div class="pool-section">
+                      <div class="section-header">
+                          <h3>Available Partners (Pool)</h3>
+                          <div>Make selection below</div>
+                      </div>
+                      <div class="pool-list" id="pool-list">
+                          <!-- Pool players will be added here by JavaScript -->
+                      </div>
+                  </div>
+              </div>
 
-                <div class="draft-controls">
-                    <button class="btn btn-prev" id="prev-btn" disabled>Previous Pick</button>
-                    <button class="btn btn-confirm" id="next-btn" disabled>Confirm Selection</button>
-                </div>
-            </div>
+              <div class="draft-controls">
+                  <button class="btn btn-prev" id="prev-btn" disabled>Previous Pick</button>
+                  <button class="btn btn-confirm" id="next-btn" disabled>Confirm Selection</button>
+              </div>
+          </div>
 
-            <!-- Results (hidden initially) -->
-            <div class="results-container hidden" id="results-container">
-                <div class="section-title">
-                    <h2>Draft Results</h2>
-                </div>
+          <!-- Results (hidden initially) -->
+          <div class="results-container hidden" id="results-container">
+              <div class="section-title">
+                  <h2>Draft Results</h2>
+              </div>
 
-                <div class="pairings-list" id="pairings-list">
-                    <!-- Pairings will be added here -->
-                </div>
+              <div class="pairings-list" id="pairings-list">
+                  <!-- Pairings will be added here -->
+              </div>
 
-                <div>
-                    <textarea class="pairings-text" id="pairings-text" readonly></textarea>
-                </div>
+              <div>
+                  <textarea class="pairings-text" id="pairings-text" readonly></textarea>
+              </div>
 
-                <div class="export-controls">
-                    <button class="btn" id="copy-btn">Copy to Clipboard</button>
-                    <button class="btn" id="restart-btn">Start New Draft</button>
-                </div>
-            </div>
-        </div>
-    </main>
-
-    <script src="draft-script.js"></script>
+              <div class="export-controls">
+                  <button class="btn" id="copy-btn">Copy to Clipboard</button>
+                  <button class="btn" id="restart-btn">Start New Draft</button>
+              </div>
+          </div>
+      </div>
+  </main>
 </body>
 </html>
