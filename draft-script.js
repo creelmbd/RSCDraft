@@ -174,9 +174,28 @@ document.addEventListener('DOMContentLoaded', function() {
 
   // Select a pool player
   function selectPoolPlayer(id) {
-      selectedPoolPlayerId = id;
-      renderPoolPlayers();
-      nextBtn.disabled = false;
+      // Toggle selection if clicking the same player
+      if (selectedPoolPlayerId === id) {
+          selectedPoolPlayerId = null;
+          nextBtn.disabled = true;
+      } else {
+          selectedPoolPlayerId = id;
+          nextBtn.disabled = false;
+      }
+
+      // Clear previous selections
+      const allPoolCards = document.querySelectorAll('.pool-player');
+      allPoolCards.forEach(card => {
+          card.classList.remove('selected');
+      });
+
+      // Add selected class to the current selection
+      if (selectedPoolPlayerId !== null) {
+          const selectedCard = document.querySelector(`.pool-player[data-id="${selectedPoolPlayerId}"]`);
+          if (selectedCard) {
+              selectedCard.classList.add('selected');
+          }
+      }
   }
 
   // Update the current picker display
