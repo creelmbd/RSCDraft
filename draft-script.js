@@ -190,8 +190,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
       const currentPlayer = players[currentPickIndex];
       currentPickerEl.textContent = currentPlayer.name;
-      currentRoundEl.textContent = currentPickIndex + 1;
-      pickNumberEl.textContent = currentPickIndex + 1;
+      currentRoundEl.textContent = (currentPickIndex + 1).toString();
+      pickNumberEl.textContent = (currentPickIndex + 1).toString();
   }
 
   // Update the progress bar
@@ -224,7 +224,7 @@ document.addEventListener('DOMContentLoaded', function() {
       prevBtn.disabled = false;
 
       // Reset timer for next pick
-      if (!draftComplete) {
+      if (!draftComplete && currentPickIndex < players.length) {
           startTimer();
       }
 
@@ -379,4 +379,5 @@ document.addEventListener('DOMContentLoaded', function() {
   restartBtn.addEventListener('click', restartDraft);
 
   // Initialize
-  initializeDraft();})
+  initializeDraft();
+});
