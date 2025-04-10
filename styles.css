@@ -31,8 +31,8 @@ header {
 }
 
 .container {
-  width: 90%;
-  max-width: 1200px;
+  width: 95%;
+  max-width: 1600px;
   margin: 0 auto;
   padding: 20px 0;
 }
@@ -137,12 +137,15 @@ header {
 .current-pick-section {
   background: linear-gradient(to right, rgba(59, 145, 80, 0.1), rgba(59, 145, 80, 0.3), rgba(59, 145, 80, 0.1));
   border-radius: 10px;
-  padding: 1.5rem;
+  padding: 2rem;
   margin-bottom: 2rem;
   text-align: center;
   position: relative;
   border: 2px solid var(--green-primary);
   overflow: hidden;
+  max-width: 1400px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .current-pick-section::before {
@@ -244,7 +247,7 @@ header {
 .draft-sections {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 2rem;
+  gap: 3rem;
   margin-top: 2rem;
 }
 
@@ -270,7 +273,7 @@ header {
 .players-list, .pool-list {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 1rem;
+  gap: 1.5rem;
 }
 
 .player-card {
@@ -350,13 +353,16 @@ header {
   margin-top: 2rem;
   padding-top: 1rem;
   border-top: 1px solid rgba(255, 255, 255, 0.1);
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .btn {
   display: inline-block;
   background-color: var(--green-primary);
   color: var(--white);
-  padding: 0.8rem 2rem;
+  padding: 0.8rem 3rem;
   border-radius: 30px;
   text-decoration: none;
   font-weight: bold;
@@ -365,7 +371,7 @@ header {
   transition: all 0.3s;
   border: none;
   cursor: pointer;
-  margin: 0 10px;
+  margin: 0 20px;
 }
 
 .btn:hover {

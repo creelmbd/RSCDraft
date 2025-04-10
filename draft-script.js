@@ -135,6 +135,9 @@ document.addEventListener('DOMContentLoaded', function() {
           const playerCard = document.createElement('div');
           playerCard.className = `player-card ${isCurrentPicker ? 'current' : ''}`;
 
+          // For better space usage, apply a bit more padding
+          playerCard.style.padding = "1.2rem";
+
           playerCard.innerHTML = `
               <div class="player-number">${player.id}</div>
               <div class="player-name">${player.name}</div>
@@ -158,6 +161,9 @@ document.addEventListener('DOMContentLoaded', function() {
           const playerCard = document.createElement('div');
           playerCard.className = `player-card pool-player ${selectedPoolPlayerId === player.id ? 'selected' : ''}`;
           playerCard.dataset.id = player.id;
+
+          // For better space usage, apply a bit more padding
+          playerCard.style.padding = "1.2rem";
 
           playerCard.innerHTML = `
               <div class="player-number">${player.id}</div>
