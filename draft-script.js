@@ -187,13 +187,21 @@ document.addEventListener('DOMContentLoaded', function() {
       const allPoolCards = document.querySelectorAll('.pool-player');
       allPoolCards.forEach(card => {
           card.classList.remove('selected');
+          // Reset to default styling
+          card.style.borderColor = '#2d7a3e'; // green-dark
+          card.style.boxShadow = 'none';
+          card.style.backgroundColor = 'rgba(59, 145, 80, 0.1)';
       });
 
-      // Add selected class to the current selection
+      // Add selected class and apply styling directly to the current selection
       if (selectedPoolPlayerId !== null) {
           const selectedCard = document.querySelector(`.pool-player[data-id="${selectedPoolPlayerId}"]`);
           if (selectedCard) {
               selectedCard.classList.add('selected');
+              // Apply yellow highlight styling directly
+              selectedCard.style.borderColor = '#ffd700'; // yellow
+              selectedCard.style.boxShadow = '0 0 15px rgba(255, 215, 0, 0.6)';
+              selectedCard.style.backgroundColor = 'rgba(59, 145, 80, 0.2)';
           }
       }
   }
