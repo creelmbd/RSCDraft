@@ -291,8 +291,9 @@ header {
 }
 
 .player-card.selected {
-  border-color: var(--green-light);
-  box-shadow: 0 0 10px rgba(76, 179, 102, 0.6);
+  border-color: var(--yellow);
+  box-shadow: 0 0 15px rgba(255, 215, 0, 0.6);
+  background-color: rgba(59, 145, 80, 0.2);
 }
 
 .player-card:hover {
@@ -337,6 +338,12 @@ header {
   background-color: rgba(59, 145, 80, 0.3);
 }
 
+.pool-player.selected {
+  border-color: var(--yellow);
+  box-shadow: 0 0 15px rgba(255, 215, 0, 0.6);
+  background-color: rgba(59, 145, 80, 0.2);
+}
+
 .draft-controls {
   display: flex;
   justify-content: center;
@@ -367,6 +374,13 @@ header {
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
 }
 
+.btn:disabled {
+  background-color: #666;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
 .btn-large {
   font-size: 1.2rem;
   padding: 1rem 3rem;
@@ -383,17 +397,6 @@ header {
 
 .btn-prev {
   background-color: var(--dark-gray);
-}
-
-.btn-disabled {
-  background-color: #666;
-  cursor: not-allowed;
-}
-
-.btn-disabled:hover {
-  background-color: #666;
-  transform: none;
-  box-shadow: none;
 }
 
 /* Results Section */
