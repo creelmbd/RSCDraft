@@ -109,17 +109,9 @@ header {
 }
 
 @keyframes pulse {
-  0% {
-    opacity: 1;
-  }
-
-  50% {
-    opacity: 0.7;
-  }
-
-  100% {
-    opacity: 1;
-  }
+  0% { opacity: 1; }
+  50% { opacity: 0.7; }
+  100% { opacity: 1; }
 }
 
 .draft-progress {
@@ -143,8 +135,7 @@ header {
   gap: 2rem;
 }
 
-.players-section,
-.pool-section {
+.players-section, .pool-section {
   background-color: rgba(0, 0, 0, 0.4);
   border-radius: 8px;
   padding: 1.5rem;
@@ -163,10 +154,9 @@ header {
   font-size: 1.3rem;
 }
 
-.players-list,
-.pool-list {
+.players-list, .pool-list {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  grid-template-columns: repeat(3, 1fr);
   gap: 1rem;
 }
 
@@ -317,11 +307,16 @@ header {
 
 @media (max-width: 768px) {
   .draft-sections {
-    grid-template-columns: 1fr;
+      grid-template-columns: 1fr;
   }
 
-  .players-list,
-  .pool-list {
-    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  .players-list, .pool-list {
+      grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .players-list, .pool-list {
+      grid-template-columns: 1fr;
   }
 }
