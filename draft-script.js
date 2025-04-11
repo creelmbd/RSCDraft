@@ -159,13 +159,26 @@ document.addEventListener('DOMContentLoaded', function() {
           const playerCard = document.createElement('div');
           playerCard.className = `player-card ${isCurrentPicker ? 'current' : ''}`;
 
-          // Dynamic padding will be adjusted by adjustCardSizes()
+          // Mark double-digit numbers
+          const isDoubleDigit = player.id >= 10;
+          playerCard.dataset.doubleDigit = isDoubleDigit;
 
-          playerCard.innerHTML = `
-              <div class="player-number">${player.id}</div>
+          // Create player number separately to style it directly
+          const playerNumber = document.createElement('div');
+          playerNumber.className = 'player-number';
+          playerNumber.textContent = player.id;
+
+          // Create player name and partner info
+          const playerInfo = document.createElement('div');
+          playerInfo.className = 'player-info';
+          playerInfo.innerHTML = `
               <div class="player-name">${player.name}</div>
               ${player.partner ? `<div class="player-partner">Partner: ${player.partner.name}</div>` : ''}
           `;
+
+          // Append elements to the card
+          playerCard.appendChild(playerNumber);
+          playerCard.appendChild(playerInfo);
 
           playersListEl.appendChild(playerCard);
       });
@@ -185,12 +198,23 @@ document.addEventListener('DOMContentLoaded', function() {
           playerCard.className = `player-card pool-player ${selectedPoolPlayerId === player.id ? 'selected' : ''}`;
           playerCard.dataset.id = player.id;
 
-          // Dynamic padding will be adjusted by adjustCardSizes()
+          // Mark double-digit numbers
+          const isDoubleDigit = player.id >= 10;
+          playerCard.dataset.doubleDigit = isDoubleDigit;
 
-          playerCard.innerHTML = `
-              <div class="player-number">${player.id}</div>
-              <div class="player-name">${player.name}</div>
-          `;
+          // Create player number separately to style it directly
+          const playerNumber = document.createElement('div');
+          playerNumber.className = 'player-number';
+          playerNumber.textContent = player.id;
+
+          // Create player name
+          const playerName = document.createElement('div');
+          playerName.className = 'player-name';
+          playerName.textContent = player.name;
+
+          // Append elements to the card
+          playerCard.appendChild(playerNumber);
+          playerCard.appendChild(playerName);
 
           playerCard.addEventListener('click', () => {
               selectPoolPlayer(player.id);

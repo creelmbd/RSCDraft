@@ -350,6 +350,7 @@ header {
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
 }
 
+/* Fix for double-digit numbers in the circles */
 .player-number {
   position: absolute;
   top: -8px;
@@ -363,7 +364,17 @@ header {
   align-items: center;
   justify-content: center;
   font-weight: bold;
-  font-size: 0.8rem;
+  font-size: 0.7rem;
+  text-align: center;
+  line-height: 1;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+/* Make double-digit numbers slightly smaller */
+.player-card[data-double-digit="true"] .player-number {
+  font-size: 0.62rem;
 }
 
 .player-name {
@@ -644,7 +655,13 @@ header {
   .player-number {
     width: 20px;
     height: 20px;
-    font-size: 0.7rem;
+    font-size: 0.65rem;
+    top: -6px;
+    left: -6px;
+  }
+
+  .player-card[data-double-digit="true"] .player-number {
+    font-size: 0.55rem;
   }
 
   .draft-controls {
