@@ -274,7 +274,7 @@ header {
 .players-section, .pool-section {
   background-color: rgba(0, 0, 0, 0.4);
   border-radius: 8px;
-  padding: 1rem;
+  padding: 1.5rem; /* Increased padding */
   display: flex;
   flex-direction: column;
   height: auto;
@@ -300,8 +300,7 @@ header {
   gap: 0.8rem;
   overflow-y: auto;
   flex: 1;
-  padding-right: 5px;
-  padding-bottom: 1rem;
+  padding: 10px 5px 1rem 15px; /* Additional padding on left and top */
   max-height: 60vh;
 }
 
@@ -324,12 +323,13 @@ header {
   background-color: rgba(0, 0, 0, 0.6);
   border: 2px solid var(--dark-gray);
   border-radius: 6px;
-  padding: 1rem;
+  padding: 1rem 1rem 1rem 1.5rem; /* Increased left padding to accommodate number */
   display: flex;
   flex-direction: column;
   position: relative;
   transition: all 0.3s ease;
   min-height: 60px;
+  margin: 10px 5px; /* Add margin to prevent number cutoff */
 }
 
 .player-card.current {
@@ -349,11 +349,10 @@ header {
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
 }
 
-/* Fix for double-digit numbers in the circles */
 .player-number {
   position: absolute;
-  top: -8px;
-  left: -8px;
+  top: 50%;
+  left: -12px;
   width: 24px;
   height: 24px;
   background-color: var(--green-primary);
@@ -368,7 +367,9 @@ header {
   line-height: 1;
   padding: 0;
   margin: 0;
+  transform: translateY(-50%);
   box-sizing: border-box;
+  z-index: 10;
 }
 
 /* Make double-digit numbers slightly smaller */
