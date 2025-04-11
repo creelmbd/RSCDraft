@@ -294,16 +294,6 @@ header {
   font-size: 1.1rem;
 }
 
-.players-list, .pool-list {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
-  gap: 0.8rem;
-  overflow-y: auto;
-  flex: 1;
-  padding: 10px 5px 1rem 15px; /* Additional padding on left and top */
-  max-height: 60vh;
-}
-
 /* Custom scrollbar for player lists */
 .players-list::-webkit-scrollbar, .pool-list::-webkit-scrollbar {
   width: 6px;
@@ -323,13 +313,16 @@ header {
   background-color: rgba(0, 0, 0, 0.6);
   border: 2px solid var(--dark-gray);
   border-radius: 6px;
-  padding: 1rem 1rem 1rem 1.5rem; /* Increased left padding to accommodate number */
+  padding: 0.8rem 0.8rem 0.8rem 0.8rem; /* Reduced padding all around */
   display: flex;
   flex-direction: column;
   position: relative;
   transition: all 0.3s ease;
-  min-height: 60px;
-  margin: 10px 5px; /* Add margin to prevent number cutoff */
+  min-height: 70px; /* Slightly reduced minimum height */
+  height: auto; /* Allow height to adjust to content */
+  margin: 8px 5px;
+  width: calc(100% - 10px);
+  justify-content: center; /* Center content vertically */
 }
 
 .player-card.current {
@@ -351,10 +344,10 @@ header {
 
 .player-number {
   position: absolute;
-  top: 8px;    /* ✅ small padding from top */
-  left: 8px;   /* ✅ small padding from left */
-  width: 24px;
-  height: 24px;
+  top: 4px;    /* Reduced from 8px to move higher */
+  left: 4px;   /* Reduced from 8px to move more left */
+  width: 22px; /* Slightly smaller size */
+  height: 22px;
   background-color: var(--green-primary);
   color: var(--white);
   border-radius: 50%;
@@ -371,23 +364,21 @@ header {
   z-index: 10;
 }
 
-
 /* Make double-digit numbers slightly smaller */
 .player-card[data-double-digit="true"] .player-number {
   font-size: 0.62rem;
 }
 
-.player-name {
-  font-size: 1.1rem;
-  font-weight: bold;
-  margin-bottom: 0.3rem;
-  margin-left: 1rem;
-}
 
 .player-partner {
   color: var(--green-light);
   font-style: italic;
   font-size: 0.9rem;
+  white-space: normal;
+  overflow: visible;
+  text-overflow: clip;
+  min-height: 1.1em; /* Slightly reduced */
+  line-height: 1.2; /* Tighter line height */
 }
 
 .pool-player {
@@ -529,16 +520,6 @@ header {
   resize: none;
 }
 
-/* Fix the grid layout to maintain consistent card sizes */
-.players-list, .pool-list {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
-  gap: 0.8rem;
-  overflow-y: auto;
-  flex: 1;
-  padding: 10px 5px 1rem 15px;
-  max-height: 60vh;
-}
 
 /* Fix for the pool section to maintain layout */
 .pool-section {
@@ -619,57 +600,25 @@ header {
   justify-content: center; /* Center content vertically */
 }
 
-.player-number {
-  position: absolute;
-  top: 8px;    /* Position at top */
-  left: 8px;   /* Position at left */
-  width: 24px;
-  height: 24px;
-  background-color: var(--green-primary);
-  color: var(--white);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: bold;
-  font-size: 0.7rem;
-  text-align: center;
-  line-height: 1;
-  padding: 0;
-  margin: 0;
-  box-sizing: border-box;
-  z-index: 10;
-}
-
 .player-name {
   font-size: 1.1rem;
   font-weight: bold;
-  margin-bottom: 0.3rem;
-  margin-left: 0.5rem; /* Reduced from 1rem to fit better */
+  margin-bottom: 0.2rem; /* Reduced from 0.3rem */
+  margin-left: 0;
   white-space: normal; /* Allow text to wrap */
   overflow: visible; /* Show all text */
   text-overflow: clip; /* Don't use ellipsis */
+  line-height: 1.2; /* Tighter line height */
 }
 
-.player-partner {
-  color: var(--green-light);
-  font-style: italic;
-  font-size: 0.9rem;
-  white-space: normal; /* Allow text to wrap */
-  overflow: visible; /* Show all text */
-  text-overflow: clip; /* Don't use ellipsis */
-  /* Make space for partner text but hide it when empty */
-  min-height: 1.2em;
-}
 
-/* Maintain grid layouts */
 .players-list, .pool-list {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
-  gap: 0.8rem;
+  grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); /* Slightly narrower cards */
+  gap: 0.6rem; /* Reduced gap */
   overflow-y: auto;
   flex: 1;
-  padding: 10px 5px 1rem 15px;
+  padding: 5px 5px 1rem 10px; /* Reduced padding */
   max-height: 60vh;
 }
 
@@ -696,5 +645,6 @@ header {
   display: flex;
   flex-direction: column;
   width: 100%;
-  padding-left: 25px; /* Make space for the number */
+  padding-left: 22px; /* Slightly reduced from 25px */
+  padding-top: 2px; /* Add a bit of top padding */
 }
