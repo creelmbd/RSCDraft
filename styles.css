@@ -528,3 +528,77 @@ header {
   margin-top: 0.5rem;
   resize: none;
 }
+
+/* Fix the grid layout to maintain consistent card sizes */
+.players-list, .pool-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 0.8rem;
+  overflow-y: auto;
+  flex: 1;
+  padding: 10px 5px 1rem 15px;
+  max-height: 60vh;
+}
+
+/* Fix for the pool section to maintain layout */
+.pool-section {
+  background-color: rgba(0, 0, 0, 0.4);
+  border-radius: 8px;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  height: auto;
+  min-height: 300px;
+}
+
+/* Set fixed dimensions for player cards */
+.player-card {
+  background-color: rgba(0, 0, 0, 0.6);
+  border: 2px solid var(--dark-gray);
+  border-radius: 6px;
+  padding: 1rem 1rem 1rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  transition: all 0.3s ease;
+  min-height: 80px;
+  height: 80px;
+  margin: 10px 5px;
+  width: calc(100% - 10px); /* Ensure cards take up full width minus margins */
+}
+
+/* Define a specific grid for the pool list */
+.pool-list {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr); /* Force exactly 5 columns */
+  grid-template-rows: repeat(auto-fill, minmax(100px, 1fr)); /* Define row height */
+  grid-auto-flow: row; /* Fill rows first */
+  grid-gap: 0.8rem;
+}
+
+/* Ensure empty grid spaces maintain their size */
+.pool-list::after {
+  content: "";
+  grid-column: span 1;
+  grid-row: span 1;
+  visibility: hidden;
+}
+
+/* Ensure sections maintain equal width */
+.draft-sections {
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* Equal width for both sections */
+  gap: 1rem;
+  margin-top: 1rem;
+  flex: 1;
+}
+
+/* Add placeholder cards that will show when actual cards are removed */
+.pool-list .placeholder-card {
+  background-color: rgba(0, 0, 0, 0.2);
+  border: 1px dashed var(--dark-gray);
+  border-radius: 6px;
+  min-height: 80px;
+  height: 80px;
+  visibility: hidden;
+}
