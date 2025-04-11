@@ -70,12 +70,36 @@ document.addEventListener('DOMContentLoaded', function() {
   let timerInterval = null;
   let timeRemaining = 300; // 5 minutes in seconds
 
+  // Handle window resize for responsive adjustments
+  window.addEventListener('resize', function() {
+    adjustCardSizes();
+  });
+
+  // Adjust card sizes based on screen width
+  function adjustCardSizes() {
+    const isMobile = window.innerWidth <= 576;
+    const isTablet = window.innerWidth <= 768 && window.innerWidth > 576;
+
+    const playerCards = document.querySelectorAll('.player-card');
+
+    playerCards.forEach(card => {
+      if (isMobile) {
+        card.style.padding = '0.5rem';
+      } else if (isTablet) {
+        card.style.padding = '0.8rem';
+      } else {
+        card.style.padding = '1rem';
+      }
+    });
+  }
+
   // Initialize the draft
   function initializeDraft() {
       renderPlayers();
       renderPoolPlayers();
       updateCurrentPicker();
       updateProgressBar();
+      adjustCardSizes();
   }
 
   // Start the draft
@@ -135,8 +159,7 @@ document.addEventListener('DOMContentLoaded', function() {
           const playerCard = document.createElement('div');
           playerCard.className = `player-card ${isCurrentPicker ? 'current' : ''}`;
 
-          // For better space usage, apply a bit more padding
-          playerCard.style.padding = "1.2rem";
+          // Dynamic padding will be adjusted by adjustCardSizes()
 
           playerCard.innerHTML = `
               <div class="player-number">${player.id}</div>
@@ -162,8 +185,7 @@ document.addEventListener('DOMContentLoaded', function() {
           playerCard.className = `player-card pool-player ${selectedPoolPlayerId === player.id ? 'selected' : ''}`;
           playerCard.dataset.id = player.id;
 
-          // For better space usage, apply a bit more padding
-          playerCard.style.padding = "1.2rem";
+          // Dynamic padding will be adjusted by adjustCardSizes()
 
           playerCard.innerHTML = `
               <div class="player-number">${player.id}</div>
@@ -176,6 +198,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
           poolListEl.appendChild(playerCard);
       });
+
+      // After rendering, adjust card sizes
+      adjustCardSizes();
   }
 
   // Select a pool player
@@ -309,108 +334,3 @@ document.addEventListener('DOMContentLoaded', function() {
       updateProgressBar();
       nextBtn.disabled = true;
   }
-
-  // Show the results
-  function showResults() {
-      // Update header display
-      updateCurrentPicker();
-      updateProgressBar();
-
-      // Generate pairings display
-      pairingsList.innerHTML = '';
-      let pairingsOutput = "2025 Rising Star Classic - Draft Results\n";
-      pairingsOutput += "=======================================\n\n";
-
-      players.forEach((player, index) => {
-          const pairingDiv = document.createElement('div');
-          const pairingText = `${player.id}. ${player.name} is paired with ${player.partner ? player.partner.name : 'NO PARTNER'}`;
-
-          pairingDiv.innerHTML = `
-              <span class="pairing-highlight">${player.id}. ${player.name}</span> is paired with
-              <span class="pairing-highlight">${player.partner ? player.partner.name : 'NO PARTNER'}</span>
-          `;
-
-          pairingsList.appendChild(pairingDiv);
-          pairingsOutput += pairingText + "\n";
-      });
-
-      // Set the text for export
-      pairingsText.value = pairingsOutput;
-
-      // Show the results container
-      resultsContainer.classList.remove('hidden');
-  }
-
-  // Copy pairings to clipboard
-  function copyToClipboard() {
-      pairingsText.select();
-      document.execCommand('copy');
-      copyBtn.textContent = 'Copied!';
-
-      setTimeout(() => {
-          copyBtn.textContent = 'Copy to Clipboard';
-      }, 2000);
-  }
-
-  // Restart the draft
-  function restartDraft() {
-      // Reset all player partners
-      players.forEach(player => {
-          player.partner = null;
-      });
-
-      // Reset draft state
-      currentPickIndex = 0;
-      selectedPoolPlayerId = null;
-      draftComplete = false;
-      draftHistory = [];
-
-      // Show start overlay again
-      draftStartOverlay.classList.remove('hidden');
-      isDraftStarted = false;
-
-      // Clear timer
-      if (timerInterval) {
-          clearInterval(timerInterval);
-          timerInterval = null;
-      }
-
-      // Hide results
-      resultsContainer.classList.add('hidden');
-
-      // Reset UI
-      prevBtn.disabled = true;
-      nextBtn.disabled = true;
-
-      // Re-render
-      renderPlayers();
-      renderPoolPlayers();
-      updateCurrentPicker();
-      updateProgressBar();
-  }
-
-  // Sound effects for draft events
-  function playSound(type) {
-      // This could be implemented with actual sound effects
-      // For example:
-      // const sound = new Audio(`sounds/${type}.mp3`);
-      // sound.play();
-      console.log(`Playing sound: ${type}`);
-  }
-
-  // Event listeners
-  startDraftBtn.addEventListener('click', startDraft);
-  nextBtn.addEventListener('click', () => {
-      nextPick();
-      playSound('pick-confirmed');
-  });
-  prevBtn.addEventListener('click', () => {
-      previousPick();
-      playSound('pick-undone');
-  });
-  copyBtn.addEventListener('click', copyToClipboard);
-  restartBtn.addEventListener('click', restartDraft);
-
-  // Initialize
-  initializeDraft();
-});
