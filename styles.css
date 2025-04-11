@@ -603,27 +603,26 @@ header {
   visibility: hidden;
 }
 
-/* Better card layout that properly accommodates the number and partner info */
 .player-card {
   background-color: rgba(0, 0, 0, 0.6);
   border: 2px solid var(--dark-gray);
   border-radius: 6px;
-  padding: 1rem 1rem 1rem 1.5rem; /* Left padding for number */
+  padding: 1rem 1rem 1rem 1rem; /* Reduced left padding */
   display: flex;
   flex-direction: column;
   position: relative;
   transition: all 0.3s ease;
   min-height: 80px; /* Minimum height for consistency */
+  height: auto; /* Allow height to adjust to content */
   margin: 10px 5px;
   width: calc(100% - 10px);
   justify-content: center; /* Center content vertically */
 }
 
-/* Reposition the player number outside the content area */
 .player-number {
   position: absolute;
-  top: 50%;
-  left: -12px;
+  top: 8px;    /* Position at top */
+  left: 8px;   /* Position at left */
   width: 24px;
   height: 24px;
   background-color: var(--green-primary);
@@ -638,29 +637,27 @@ header {
   line-height: 1;
   padding: 0;
   margin: 0;
-  transform: translateY(-50%);
   box-sizing: border-box;
   z-index: 10;
 }
 
-/* Make player name more consistent */
 .player-name {
   font-size: 1.1rem;
   font-weight: bold;
   margin-bottom: 0.3rem;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  margin-left: 0.5rem; /* Reduced from 1rem to fit better */
+  white-space: normal; /* Allow text to wrap */
+  overflow: visible; /* Show all text */
+  text-overflow: clip; /* Don't use ellipsis */
 }
 
-/* Style for partner information */
 .player-partner {
   color: var(--green-light);
   font-style: italic;
   font-size: 0.9rem;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  white-space: normal; /* Allow text to wrap */
+  overflow: visible; /* Show all text */
+  text-overflow: clip; /* Don't use ellipsis */
   /* Make space for partner text but hide it when empty */
   min-height: 1.2em;
 }
@@ -693,4 +690,11 @@ header {
 /* Add this class to cards that have partner info */
 .player-card:has(.player-partner:not(:empty)) {
   min-height: 90px;
+}
+
+.player-info {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding-left: 25px; /* Make space for the number */
 }

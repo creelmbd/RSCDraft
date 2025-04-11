@@ -131,9 +131,14 @@ document.addEventListener('DOMContentLoaded', function() {
   function renderPlayers() {
       playersListEl.innerHTML = '';
       players.forEach(player => {
-          const isCurrentPicker = players[currentPickIndex].id === player.id;
+          const isCurrentPicker = players[currentPickIndex]?.id === player.id;
           const playerCard = document.createElement('div');
           playerCard.className = `player-card ${isCurrentPicker ? 'current' : ''}`;
+
+          // Add extra class if player has partner
+          if (player.partner) {
+              playerCard.classList.add('with-partner');
+          }
 
           // Mark double-digit numbers
           const isDoubleDigit = player.id >= 10;
@@ -147,10 +152,22 @@ document.addEventListener('DOMContentLoaded', function() {
           // Create player name and partner info
           const playerInfo = document.createElement('div');
           playerInfo.className = 'player-info';
-          playerInfo.innerHTML = `
-              <div class="player-name">${player.name}</div>
-              ${player.partner ? `<div class="player-partner">${player.partner.name}</div>` : ''}
-          `;
+
+          // Create player name div
+          const playerName = document.createElement('div');
+          playerName.className = 'player-name';
+          playerName.textContent = player.name;
+
+          // Add name to player info
+          playerInfo.appendChild(playerName);
+
+          // Add partner info if exists
+          if (player.partner) {
+              const playerPartner = document.createElement('div');
+              playerPartner.className = 'player-partner';
+              playerPartner.textContent = player.partner.name;
+              playerInfo.appendChild(playerPartner);
+          }
 
           // Append elements to the card
           playerCard.appendChild(playerNumber);
@@ -183,14 +200,21 @@ document.addEventListener('DOMContentLoaded', function() {
           playerNumber.className = 'player-number';
           playerNumber.textContent = player.id;
 
+          // Create player info container
+          const playerInfo = document.createElement('div');
+          playerInfo.className = 'player-info';
+
           // Create player name
           const playerName = document.createElement('div');
           playerName.className = 'player-name';
           playerName.textContent = player.name;
 
+          // Add name to player info
+          playerInfo.appendChild(playerName);
+
           // Append elements to the card
           playerCard.appendChild(playerNumber);
-          playerCard.appendChild(playerName);
+          playerCard.appendChild(playerInfo);
 
           playerCard.addEventListener('click', () => {
               selectPoolPlayer(player.id);
@@ -278,24 +302,24 @@ document.addEventListener('DOMContentLoaded', function() {
       nextBtn.disabled = true;
       prevBtn.disabled = false;
 
-      // Reset timer for next pick
-      if (!draftComplete && currentPickIndex < players.length) {
-          startTimer();
-      }
-
-      // Check if draft is complete
+      // Check if draft is complete BEFORE starting a new timer
       if (currentPickIndex >= players.length) {
           draftComplete = true;
           if (timerInterval) {
               clearInterval(timerInterval);
           }
           showResults();
-      } else {
-          renderPlayers();
-          renderPoolPlayers();
-          updateCurrentPicker();
-          updateProgressBar();
+          return; // Add return to prevent further processing
       }
+
+      // Only start a new timer if the draft isn't complete
+      startTimer();
+
+      // Update UI
+      renderPlayers();
+      renderPoolPlayers();
+      updateCurrentPicker();
+      updateProgressBar();
   }
 
   // Go back to the previous pick
