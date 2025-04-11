@@ -351,8 +351,8 @@ header {
 
 .player-number {
   position: absolute;
-  top: 50%;
-  left: -12px;
+  top: 8px;    /* ✅ small padding from top */
+  left: 8px;   /* ✅ small padding from left */
   width: 24px;
   height: 24px;
   background-color: var(--green-primary);
@@ -367,10 +367,10 @@ header {
   line-height: 1;
   padding: 0;
   margin: 0;
-  transform: translateY(-50%);
   box-sizing: border-box;
   z-index: 10;
 }
+
 
 /* Make double-digit numbers slightly smaller */
 .player-card[data-double-digit="true"] .player-number {
