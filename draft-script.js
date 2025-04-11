@@ -149,7 +149,7 @@ document.addEventListener('DOMContentLoaded', function() {
           playerInfo.className = 'player-info';
           playerInfo.innerHTML = `
               <div class="player-name">${player.name}</div>
-              ${player.partner ? `<div class="player-partner">Partner: ${player.partner.name}</div>` : ''}
+              ${player.partner ? `<div class="player-partner">${player.partner.name}</div>` : ''}
           `;
 
           // Append elements to the card
