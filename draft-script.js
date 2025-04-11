@@ -70,36 +70,12 @@ document.addEventListener('DOMContentLoaded', function() {
   let timerInterval = null;
   let timeRemaining = 300; // 5 minutes in seconds
 
-  // Handle window resize for responsive adjustments
-  window.addEventListener('resize', function() {
-    adjustCardSizes();
-  });
-
-  // Adjust card sizes based on screen width
-  function adjustCardSizes() {
-    const isMobile = window.innerWidth <= 576;
-    const isTablet = window.innerWidth <= 768 && window.innerWidth > 576;
-
-    const playerCards = document.querySelectorAll('.player-card');
-
-    playerCards.forEach(card => {
-      if (isMobile) {
-        card.style.padding = '0.5rem';
-      } else if (isTablet) {
-        card.style.padding = '0.8rem';
-      } else {
-        card.style.padding = '1rem';
-      }
-    });
-  }
-
   // Initialize the draft
   function initializeDraft() {
       renderPlayers();
       renderPoolPlayers();
       updateCurrentPicker();
       updateProgressBar();
-      adjustCardSizes();
   }
 
   // Start the draft
@@ -222,9 +198,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
           poolListEl.appendChild(playerCard);
       });
-
-      // After rendering, adjust card sizes
-      adjustCardSizes();
   }
 
   // Select a pool player
@@ -358,3 +331,78 @@ document.addEventListener('DOMContentLoaded', function() {
       updateProgressBar();
       nextBtn.disabled = true;
   }
+
+  // Show draft results
+  function showResults() {
+      resultsContainer.classList.remove('hidden');
+
+      // Display pairings in the list
+      pairingsList.innerHTML = '';
+      let pairingsTextContent = '2025 Rising Star Classic Pairings:\n\n';
+
+      players.forEach(player => {
+          const pairingDiv = document.createElement('div');
+          pairingDiv.innerHTML = `<span class="pairing-highlight">${player.name}</span> is paired with <span class="pairing-highlight">${player.partner.name}</span>`;
+          pairingsList.appendChild(pairingDiv);
+
+          pairingsTextContent += `${player.name} - ${player.partner.name}\n`;
+      });
+
+      pairingsText.value = pairingsTextContent;
+  }
+
+  // Copy to clipboard functionality
+  function copyToClipboard() {
+      pairingsText.select();
+      document.execCommand('copy');
+
+      // Visual feedback
+      copyBtn.textContent = 'Copied!';
+      setTimeout(() => {
+          copyBtn.textContent = 'Copy to Clipboard';
+      }, 2000);
+  }
+
+  // Restart draft
+  function restartDraft() {
+      // Reset all player partners
+      players.forEach(player => {
+          player.partner = null;
+      });
+
+      // Reset draft state
+      currentPickIndex = 0;
+      selectedPoolPlayerId = null;
+      draftComplete = false;
+      draftHistory = [];
+
+      // Hide results and show draft interface
+      resultsContainer.classList.add('hidden');
+      draftStartOverlay.classList.remove('hidden');
+
+      // Reset UI
+      if (timerInterval) {
+          clearInterval(timerInterval);
+      }
+
+      renderPlayers();
+      renderPoolPlayers();
+      updateCurrentPicker();
+      updateProgressBar();
+
+      nextBtn.disabled = true;
+      prevBtn.disabled = true;
+
+      isDraftStarted = false;
+  }
+
+  // Event listeners
+  startDraftBtn.addEventListener('click', startDraft);
+  nextBtn.addEventListener('click', nextPick);
+  prevBtn.addEventListener('click', previousPick);
+  copyBtn.addEventListener('click', copyToClipboard);
+  restartBtn.addEventListener('click', restartDraft);
+
+  // Initialize
+  initializeDraft();
+});

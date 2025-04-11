@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rising Star Classic | Draft Tool</title>
     <link rel="stylesheet" href="styles.css">
 </head>
@@ -31,7 +31,7 @@
                       Welcome to the 2025 Rising Star Classic Draft! Each player will have 5 minutes to make their pick.
                       The draft will proceed in the order shown on the screen.
                   </p>
-                  <button class="btn btn-large btn-start" id="start-draft-btn" onclick="startDraft()">START DRAFT</button>
+                  <button class="btn btn-large btn-start" id="start-draft-btn">START DRAFT</button>
               </div>
           </div>
 
@@ -110,25 +110,6 @@
           </div>
       </div>
   </main>
-
-  <!-- Help button for mobile users -->
-  <div class="mobile-help">
-    <button class="help-btn" id="help-btn" aria-label="Help">?</button>
-  </div>
-
-  <!-- Mobile help modal -->
-  <div class="help-modal hidden" id="help-modal">
-    <div class="help-content">
-      <h3>Draft Tool Help</h3>
-      <ul>
-        <li>Tap on a pool player to select them</li>
-        <li>Tap "Confirm Selection" to pair the player</li>
-        <li>Tap "Previous Pick" to undo</li>
-        <li>Timer shows remaining time for current pick</li>
-      </ul>
-      <button class="btn btn-close" id="close-help-btn">Close</button>
-    </div>
-  </div>
 
   <script src="draft-script.js"></script>
 </body>
