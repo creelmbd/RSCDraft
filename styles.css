@@ -602,3 +602,95 @@ header {
   height: 80px;
   visibility: hidden;
 }
+
+/* Better card layout that properly accommodates the number and partner info */
+.player-card {
+  background-color: rgba(0, 0, 0, 0.6);
+  border: 2px solid var(--dark-gray);
+  border-radius: 6px;
+  padding: 1rem 1rem 1rem 1.5rem; /* Left padding for number */
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  transition: all 0.3s ease;
+  min-height: 80px; /* Minimum height for consistency */
+  margin: 10px 5px;
+  width: calc(100% - 10px);
+  justify-content: center; /* Center content vertically */
+}
+
+/* Reposition the player number outside the content area */
+.player-number {
+  position: absolute;
+  top: 50%;
+  left: -12px;
+  width: 24px;
+  height: 24px;
+  background-color: var(--green-primary);
+  color: var(--white);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 0.7rem;
+  text-align: center;
+  line-height: 1;
+  padding: 0;
+  margin: 0;
+  transform: translateY(-50%);
+  box-sizing: border-box;
+  z-index: 10;
+}
+
+/* Make player name more consistent */
+.player-name {
+  font-size: 1.1rem;
+  font-weight: bold;
+  margin-bottom: 0.3rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Style for partner information */
+.player-partner {
+  color: var(--green-light);
+  font-style: italic;
+  font-size: 0.9rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  /* Make space for partner text but hide it when empty */
+  min-height: 1.2em;
+}
+
+/* Maintain grid layouts */
+.players-list, .pool-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 0.8rem;
+  overflow-y: auto;
+  flex: 1;
+  padding: 10px 5px 1rem 15px;
+  max-height: 60vh;
+}
+
+/* Keep sections equal width */
+.draft-sections {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-top: 1rem;
+  flex: 1;
+}
+
+/* Ensure consistent height for cards even with partner info */
+.player-card.with-partner {
+  min-height: 90px; /* Slightly taller to fit partner info */
+}
+
+/* Add this class to cards that have partner info */
+.player-card:has(.player-partner:not(:empty)) {
+  min-height: 90px;
+}
